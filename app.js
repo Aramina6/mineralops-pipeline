@@ -1,14 +1,13 @@
 /**
- * Critical Minerals Idea Pipeline — MVP
+ * MineralOps Pipeline — MVP
+ * Idea pipeline for mineral manufacturing project developers & plant operators.
  * Static app for GitHub Pages. State in localStorage.
  */
 
 (function () {
   "use strict";
 
-  const STORAGE_KEY = "cm-idea-pipeline-v1";
-
-  // ─── Taxonomy (product model) ───────────────────────────────────────────
+  const STORAGE_KEY = "mineralops-pipeline-v1";
 
   const CATEGORIES = [
     "Process Efficiency",
@@ -18,7 +17,7 @@
     "Energy & Utilities",
     "Safety & Compliance",
     "Digital & Analytics",
-    "Critical Minerals Recovery",
+    "Mineral Recovery",
   ];
 
   const PHASES = [
@@ -35,15 +34,16 @@
   ];
 
   const LOCATIONS = [
-    "Lithium Hydroxide Plant — Nevada",
-    "REE Separation — Texas",
-    "Cobalt Refinery — Louisiana",
-    "Graphite Anode — Michigan",
+    "Concentration Plant — Site A",
+    "Hydromet / Leach Circuit — Site B",
+    "Smelter & Refinery — Site C",
+    "Downstream Processing — Site D",
     "Central Lab / Pilot Plant",
-    "Corporate / Multi-site",
+    "Project Development / Multi-site",
   ];
 
   const TEAMS = [
+    "Project Development",
     "Process Engineering",
     "Operations",
     "Supply Chain",
@@ -66,27 +66,25 @@
     "scale_up",
   ]);
 
-  // ─── Seed data (critical minerals scenarios) ────────────────────────────
-
   function seedIdeas() {
     const now = Date.now();
     const day = 86400000;
     return [
       {
         id: uid(),
-        title: "Raise lithium leach recovery via temperature profile control",
+        title: "Raise leach recovery via temperature profile control",
         problem:
-          "Leach recovery varies ±3% week-to-week. Operators lack a validated temperature ramp SOP; overheating raises impurity load and reagent cost.",
+          "Leach recovery varies week-to-week. Operators lack a validated temperature ramp SOP; overheating raises impurity load and reagent cost.",
         solution:
           "Deploy staged temperature profile with inline sensors, update control recipe, and train ops on a single golden batch curve.",
-        impact: "+1.2–1.8% Li recovery; lower acid consumption; more stable impurity profile",
+        impact: "+1.2–1.8% recovery; lower acid consumption; more stable impurity profile",
         category: "Process Efficiency",
         phase: "process_efficiency",
         priority: "High",
-        location: "Lithium Hydroxide Plant — Nevada",
+        location: "Hydromet / Leach Circuit — Site B",
         team: "Process Engineering",
         lead: "Maya Chen",
-        submitter: "J. Ortiz",
+        submitter: "J. Ortiz (Operator)",
         votes: 14,
         voted: false,
         createdAt: new Date(now - 18 * day).toISOString(),
@@ -94,19 +92,19 @@
       },
       {
         id: uid(),
-        title: "Dual-source spodumene to cut single-mine feedstock risk",
+        title: "Dual-source primary concentrate to cut single-mine risk",
         problem:
-          "80% of concentrate volume comes from one mine. Grade swings force unplanned blend changes and idle time on the calciner.",
+          "Majority of concentrate volume comes from one source. Grade swings force unplanned blend changes and idle time on thermal equipment.",
         solution:
-          "Qualify a second supplier, define blend windows by Li2O and impurity, and build 21-day safety stock policy for critical grades.",
-        impact: "Lower stockout risk; reduce unplanned downtime; stabilize grade into leach",
+          "Qualify a second supplier, define blend windows by grade and impurity, and build safety-stock policy for critical grades.",
+        impact: "Lower stockout risk; reduce unplanned downtime; stabilize feed into process",
         category: "Supply Chain Problem",
         phase: "supply_chain",
         priority: "Critical",
-        location: "Lithium Hydroxide Plant — Nevada",
+        location: "Concentration Plant — Site A",
         team: "Supply Chain",
         lead: "Priya Nair",
-        submitter: "Priya Nair",
+        submitter: "Priya Nair (Project Dev)",
         votes: 22,
         voted: false,
         createdAt: new Date(now - 30 * day).toISOString(),
@@ -114,19 +112,19 @@
       },
       {
         id: uid(),
-        title: "Recover cobalt from process sludge instead of landfill",
+        title: "Recover metal values from process sludge instead of landfill",
         problem:
-          "Sludge streams still carry recoverable Co. Disposal cost is rising and ESG reporting flags material intensity.",
+          "Sludge streams still carry recoverable metal units. Disposal cost is rising and ESG reporting flags material intensity.",
         solution:
-          "Pilot selective leach + precipitation on sludge; quantify recovery vs. opex and integrate with waste permit pathway.",
-        impact: "New Co units recovered; lower disposal volume; stronger ESG narrative",
-        category: "Critical Minerals Recovery",
+          "Pilot selective leach + precipitation on sludge; quantify recovery vs. opex and align with waste permit pathway.",
+        impact: "Recovered metal units; lower disposal volume; stronger ESG narrative",
+        category: "Mineral Recovery",
         phase: "waste_esg",
         priority: "High",
-        location: "Cobalt Refinery — Louisiana",
+        location: "Smelter & Refinery — Site C",
         team: "EHS / Waste",
         lead: "Andre Brooks",
-        submitter: "S. Kim",
+        submitter: "S. Kim (Operator)",
         votes: 18,
         voted: false,
         createdAt: new Date(now - 22 * day).toISOString(),
@@ -134,19 +132,19 @@
       },
       {
         id: uid(),
-        title: "Predictive model for flotation reagent dosing (REE)",
+        title: "Predictive model for flotation reagent dosing",
         problem:
-          "Reagent dosing is operator-dependent. Overdosing raises cost; underdosing loses rare earth recovery.",
+          "Reagent dosing is operator-dependent. Overdosing raises cost; underdosing loses recovery.",
         solution:
-          "Build supervised model using feed assays, pH, and froth camera features; recommend dose band in control room UI.",
-        impact: "−8–12% reagent cost; +0.5–1% REE recovery; less grade variability",
+          "Build supervised model using feed assays, pH, and froth features; recommend dose band in control room UI.",
+        impact: "−8–12% reagent cost; +0.5–1% recovery; less grade variability",
         category: "Digital & Analytics",
         phase: "data_validation",
         priority: "Medium",
-        location: "REE Separation — Texas",
+        location: "Concentration Plant — Site A",
         team: "Data & Analytics",
         lead: "Elena Volkov",
-        submitter: "Elena Volkov",
+        submitter: "Elena Volkov (Developer)",
         votes: 11,
         voted: false,
         createdAt: new Date(now - 10 * day).toISOString(),
@@ -154,16 +152,16 @@
       },
       {
         id: uid(),
-        title: "Cut process water intensity in REE separation circuit",
+        title: "Cut process water intensity in separation circuit",
         problem:
           "Water use per tonne is above peer benchmark. Freshwater constraints threaten permit headroom for expansion.",
         solution:
-          "Closed-loop rinse recycle with ion-exchange polish; meter each stage and set water KPI on shift boards.",
+          "Closed-loop rinse recycle with polish step; meter each stage and set water KPI on shift boards.",
         impact: "−15% freshwater draw; support expansion without new water rights",
         category: "Energy & Utilities",
         phase: "impact_screening",
         priority: "High",
-        location: "REE Separation — Texas",
+        location: "Downstream Processing — Site D",
         team: "Continuous Improvement",
         lead: "Tom Hale",
         submitter: "Ops night shift",
@@ -174,19 +172,19 @@
       },
       {
         id: uid(),
-        title: "Graphite anode moisture control to cut scrap rate",
+        title: "Moisture control after drying to cut scrap rate",
         problem:
-          "Moisture excursions after drying cause coating defects and scrap. Root cause spans dryer and ambient humidity.",
+          "Moisture excursions after drying cause product defects and scrap. Root cause spans dryer and ambient humidity.",
         solution:
-          "Add dew-point control, SPC on moisture, and automatic hold when out of band before coating.",
+          "Add dew-point control, SPC on moisture, and automatic hold when out of band before next stage.",
         impact: "−30% moisture-related scrap; higher first-pass yield",
         category: "Quality & Yield",
         phase: "pilot",
         priority: "High",
-        location: "Graphite Anode — Michigan",
+        location: "Downstream Processing — Site D",
         team: "Quality",
         lead: "Rachel Cho",
-        submitter: "M. Diaz",
+        submitter: "M. Diaz (Operator)",
         votes: 7,
         voted: false,
         createdAt: new Date(now - 14 * day).toISOString(),
@@ -203,7 +201,7 @@
         category: "Safety & Compliance",
         phase: "technical_feasibility",
         priority: "Critical",
-        location: "Cobalt Refinery — Louisiana",
+        location: "Hydromet / Leach Circuit — Site B",
         team: "Operations",
         lead: "Derek Walsh",
         submitter: "Safety committee",
@@ -226,7 +224,7 @@
         location: "Central Lab / Pilot Plant",
         team: "R&D / Metallurgy",
         lead: "TBD",
-        submitter: "Lab tech pool",
+        submitter: "Lab / Project Dev",
         votes: 4,
         voted: false,
         createdAt: new Date(now - 3 * day).toISOString(),
@@ -236,15 +234,15 @@
         id: uid(),
         title: "Multi-site KPI dashboard for recovery and waste intensity",
         problem:
-          "Leadership reviews use inconsistent spreadsheets. Cross-site comparison of recovery and waste kg/t is manual.",
+          "Project and ops reviews use inconsistent spreadsheets. Cross-site comparison of recovery and waste kg/t is manual.",
         solution:
-          "Standardize definitions, connect plant historians, and publish weekly portfolio dashboard for CI reviews.",
-        impact: "Faster decisions; comparable KPIs across Nevada, Texas, Louisiana, Michigan",
+          "Standardize definitions, connect plant historians, and publish weekly portfolio dashboard for CI and project reviews.",
+        impact: "Faster decisions; comparable KPIs across sites for developers and operators",
         category: "Digital & Analytics",
         phase: "scale_up",
         priority: "Medium",
-        location: "Corporate / Multi-site",
-        team: "Data & Analytics",
+        location: "Project Development / Multi-site",
+        team: "Project Development",
         lead: "Sofia Reyes",
         submitter: "CI PMO",
         votes: 13,
@@ -254,7 +252,7 @@
       },
       {
         id: uid(),
-        title: "Standardize reagent vendor specs for cobalt precipitation",
+        title: "Standardize reagent vendor specs for precipitation",
         problem:
           "Different reagent lots change crystal morphology and filterability, causing batch time spikes.",
         solution:
@@ -263,7 +261,7 @@
         category: "Supply Chain Problem",
         phase: "realized",
         priority: "Medium",
-        location: "Cobalt Refinery — Louisiana",
+        location: "Smelter & Refinery — Site C",
         team: "Supply Chain",
         lead: "Priya Nair",
         submitter: "Process eng",
@@ -274,8 +272,6 @@
       },
     ];
   }
-
-  // ─── State ──────────────────────────────────────────────────────────────
 
   let ideas = [];
   let viewMode = "board";
@@ -316,8 +312,6 @@
     if (idx < 0 || idx >= PHASES.length - 1) return currentId;
     return PHASES[idx + 1].id;
   }
-
-  // ─── DOM helpers ────────────────────────────────────────────────────────
 
   const $ = (sel) => document.querySelector(sel);
   const $$ = (sel) => Array.from(document.querySelectorAll(sel));
@@ -360,8 +354,6 @@
     toast._t = setTimeout(() => el.classList.add("hidden"), 2600);
   }
 
-  // ─── Filters ────────────────────────────────────────────────────────────
-
   function getFilters() {
     return {
       search: ($("#filter-search").value || "").trim().toLowerCase(),
@@ -391,8 +383,6 @@
     });
   }
 
-  // ─── KPIs ───────────────────────────────────────────────────────────────
-
   function renderKpis() {
     const total = ideas.length;
     const open = ideas.filter((i) => i.phase !== "realized").length;
@@ -406,8 +396,6 @@
     $("#kpi-mfg").textContent = mfg;
     $("#kpi-votes").textContent = votes;
   }
-
-  // ─── Board ──────────────────────────────────────────────────────────────
 
   function renderBoard() {
     const list = filteredIdeas();
@@ -473,8 +461,6 @@
     const parts = loc.split("—");
     return parts.length > 1 ? parts[1].trim() : loc;
   }
-
-  // ─── List ───────────────────────────────────────────────────────────────
 
   function renderList() {
     const list = filteredIdeas().slice().sort((a, b) => (b.votes || 0) - (a.votes || 0));
@@ -554,8 +540,6 @@
     });
   }
 
-  // ─── Detail ─────────────────────────────────────────────────────────────
-
   function openDetail(id) {
     const idea = ideas.find((i) => i.id === id);
     if (!idea) return;
@@ -630,8 +614,6 @@
       return iso;
     }
   }
-
-  // ─── Form ───────────────────────────────────────────────────────────────
 
   function openForm(idea) {
     editingId = idea ? idea.id : null;
@@ -793,8 +775,6 @@
     render();
   }
 
-  // ─── Render ─────────────────────────────────────────────────────────────
-
   function render() {
     renderKpis();
     if (viewMode === "board") {
@@ -816,23 +796,14 @@
   }
 
   function resetDemo() {
-    if (!confirm("Reset all local ideas to the critical minerals demo seed data?")) return;
+    if (!confirm("Reset all local ideas to the MineralOps demo seed data?")) return;
     ideas = seedIdeas();
     save();
     toast("Demo data restored");
     render();
   }
 
-  // ─── Init ───────────────────────────────────────────────────────────────
-
   function initSelects() {
-    fillSelect($("#filter-phase"), PHASES, {
-      includeEmpty: true,
-      emptyLabel: "All phases",
-      valueKey: "id",
-      labelKey: "label",
-    });
-    // Rebuild filter phase with family hints
     const fp = $("#filter-phase");
     fp.innerHTML =
       `<option value="">All phases</option>` +
@@ -847,8 +818,6 @@
     fillSelect($("#filter-priority"), PRIORITIES, { includeEmpty: true, emptyLabel: "All priorities" });
 
     fillSelect($("#field-category"), CATEGORIES);
-    fillSelect($("#field-phase"), PHASES, { valueKey: "id", labelKey: "label" });
-    // richer phase labels
     $("#field-phase").innerHTML = PHASES.map(
       (p) =>
         `<option value="${p.id}">${escapeHtml(p.label)} (${escapeHtml(p.familyLabel)})</option>`
@@ -903,7 +872,6 @@
       render();
     });
 
-    // Close modals on backdrop click
     ["modal-form", "modal-detail", "modal-docs"].forEach((id) => {
       const backdrop = $("#" + id);
       backdrop.addEventListener("click", (e) => {

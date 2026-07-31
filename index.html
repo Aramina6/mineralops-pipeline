@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Critical Minerals Idea Pipeline — capture, vote, and track manufacturing improvement ideas through analytics and plant phases." />
-  <title>Critical Minerals Idea Pipeline</title>
+  <meta name="description" content="MineralOps Pipeline — idea capture, voting, and phase tracking for mineral manufacturing project developers and plant operators." />
+  <title>MineralOps Pipeline</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
@@ -13,7 +13,6 @@
 </head>
 <body>
   <div class="app">
-    <!-- Header -->
     <header class="header">
       <div class="header-brand">
         <div class="logo" aria-hidden="true">
@@ -30,24 +29,19 @@
           </svg>
         </div>
         <div>
-          <h1 class="product-name">Critical Minerals Idea Pipeline</h1>
-          <p class="product-tagline">From shop-floor insight → analytics screen → plant impact</p>
+          <h1 class="product-name">MineralOps Pipeline</h1>
+          <p class="product-tagline">For project developers &amp; plant operators — ideas → votes → phases → impact</p>
         </div>
       </div>
       <div class="header-actions">
-        <button type="button" class="btn btn-ghost" id="btn-docs" title="Product docs">
-          Docs
-        </button>
-        <button type="button" class="btn btn-ghost" id="btn-reset" title="Restore demo seed data">
-          Reset demo
-        </button>
+        <button type="button" class="btn btn-ghost" id="btn-docs" title="Product docs">Docs</button>
+        <button type="button" class="btn btn-ghost" id="btn-reset" title="Restore demo seed data">Reset demo</button>
         <button type="button" class="btn btn-primary" id="btn-add">
           <span class="btn-icon">+</span> Add idea
         </button>
       </div>
     </header>
 
-    <!-- KPI strip -->
     <section class="kpi-strip" aria-label="Portfolio metrics">
       <article class="kpi-card">
         <span class="kpi-label">Total ideas</span>
@@ -68,12 +62,11 @@
         <span class="kpi-hint">Process · Supply · Waste · Pilot</span>
       </article>
       <article class="kpi-card">
-        <span class="kpi-label">Top voted</span>
+        <span class="kpi-label">Total votes</span>
         <span class="kpi-value" id="kpi-votes">0</span>
       </article>
     </section>
 
-    <!-- Filters -->
     <section class="filters" aria-label="Filters">
       <div class="filter-search">
         <label class="sr-only" for="filter-search">Search</label>
@@ -82,33 +75,23 @@
       <div class="filter-selects">
         <div class="field-inline">
           <label for="filter-phase">Phase</label>
-          <select id="filter-phase">
-            <option value="">All phases</option>
-          </select>
+          <select id="filter-phase"><option value="">All phases</option></select>
         </div>
         <div class="field-inline">
           <label for="filter-category">Category</label>
-          <select id="filter-category">
-            <option value="">All categories</option>
-          </select>
+          <select id="filter-category"><option value="">All categories</option></select>
         </div>
         <div class="field-inline">
           <label for="filter-location">Location</label>
-          <select id="filter-location">
-            <option value="">All locations</option>
-          </select>
+          <select id="filter-location"><option value="">All locations</option></select>
         </div>
         <div class="field-inline">
           <label for="filter-team">Team</label>
-          <select id="filter-team">
-            <option value="">All teams</option>
-          </select>
+          <select id="filter-team"><option value="">All teams</option></select>
         </div>
         <div class="field-inline">
           <label for="filter-priority">Priority</label>
-          <select id="filter-priority">
-            <option value="">All priorities</option>
-          </select>
+          <select id="filter-priority"><option value="">All priorities</option></select>
         </div>
       </div>
       <div class="view-toggle" role="group" aria-label="View mode">
@@ -118,33 +101,31 @@
       <button type="button" class="btn btn-ghost btn-sm" id="btn-clear-filters">Clear filters</button>
     </section>
 
-    <!-- Phase legend -->
     <section class="legend" aria-label="Phase families">
-      <span class="legend-item"><span class="dot dot-analytics"></span> Analytics & decision</span>
+      <span class="legend-item"><span class="dot dot-analytics"></span> Analytics &amp; decision</span>
       <span class="legend-item"><span class="dot dot-mfg"></span> Core technical manufacturing</span>
       <span class="legend-item"><span class="dot dot-closed"></span> Realized / closed</span>
     </section>
 
-    <!-- Main content -->
     <main id="main-content">
       <div id="board-view" class="board-view"></div>
       <div id="list-view" class="list-view hidden"></div>
       <div id="empty-state" class="empty-state hidden">
         <div class="empty-icon">◎</div>
         <h2>No ideas match</h2>
-        <p>Clear filters or add a new improvement idea for critical minerals manufacturing.</p>
+        <p>Clear filters or add a new idea for your mineral manufacturing project or plant.</p>
         <button type="button" class="btn btn-primary" id="btn-add-empty">Add idea</button>
       </div>
     </main>
 
     <footer class="footer">
       <p>
-        <strong>Critical Minerals Idea Pipeline</strong> · MVP demo ·
+        <strong>MineralOps Pipeline</strong> · For project developers &amp; operators ·
         <a href="docs/BRD.md" target="_blank" rel="noopener">BRD</a> ·
         <a href="docs/PRD.md" target="_blank" rel="noopener">PRD</a> ·
         <a href="https://github.com/Aramina6" target="_blank" rel="noopener">Aramina6</a>
       </p>
-      <p class="footer-note">Phases: Submitted → Impact Screening → Data Validation → Technical Feasibility → Process Efficiency · Supply Chain · Waste & ESG → Pilot → Scale-Up → Realized</p>
+      <p class="footer-note">Phases: Submitted → Impact Screening → Data Validation → Technical Feasibility → Process Efficiency · Supply Chain · Waste &amp; ESG → Pilot → Scale-Up → Realized</p>
     </footer>
   </div>
 
@@ -160,13 +141,13 @@
 
         <div class="field full">
           <label for="field-title">Title <span class="req">*</span></label>
-          <input type="text" id="field-title" required maxlength="120" placeholder="e.g. Improve Li recovery via leach temperature control" />
+          <input type="text" id="field-title" required maxlength="120" placeholder="e.g. Improve flotation recovery with staged reagent dosing" />
           <span class="field-error" data-for="field-title"></span>
         </div>
 
         <div class="field full">
           <label for="field-problem">Problem statement <span class="req">*</span></label>
-          <textarea id="field-problem" required rows="3" maxlength="600" placeholder="What is failing, costly, or risky today?"></textarea>
+          <textarea id="field-problem" required rows="3" maxlength="600" placeholder="What is failing, costly, or risky for developers or operators today?"></textarea>
           <span class="field-error" data-for="field-problem"></span>
         </div>
 
@@ -178,7 +159,7 @@
 
         <div class="field full">
           <label for="field-impact">Expected impact</label>
-          <textarea id="field-impact" rows="2" maxlength="400" placeholder="e.g. +1.5% recovery, −8% reagent cost, lower tailings volume"></textarea>
+          <textarea id="field-impact" rows="2" maxlength="400" placeholder="e.g. +1.5% recovery, lower reagent cost, less downtime"></textarea>
         </div>
 
         <div class="field">
@@ -190,7 +171,7 @@
         <div class="field">
           <label for="field-phase">Phase <span class="req">*</span></label>
           <select id="field-phase" required></select>
-          <p class="field-hint" id="phase-family-hint">Analytics & decision</p>
+          <p class="field-hint" id="phase-family-hint">Analytics &amp; decision</p>
         </div>
 
         <div class="field">
@@ -210,13 +191,13 @@
 
         <div class="field">
           <label for="field-lead">Lead <span class="req">*</span></label>
-          <input type="text" id="field-lead" required maxlength="80" placeholder="Named owner" />
+          <input type="text" id="field-lead" required maxlength="80" placeholder="Named owner (developer or operator lead)" />
           <span class="field-error" data-for="field-lead"></span>
         </div>
 
         <div class="field">
           <label for="field-submitter">Submitter</label>
-          <input type="text" id="field-submitter" maxlength="80" placeholder="Your name" />
+          <input type="text" id="field-submitter" maxlength="80" placeholder="Your name / role" />
         </div>
 
         <div class="form-actions full">
@@ -245,34 +226,34 @@
     </div>
   </div>
 
-  <!-- Modal: Docs / UI guide -->
+  <!-- Modal: Docs -->
   <div class="modal-backdrop hidden" id="modal-docs" role="dialog" aria-modal="true" aria-labelledby="docs-title">
     <div class="modal modal-wide">
       <header class="modal-header">
-        <h2 id="docs-title">Product & UI guide</h2>
+        <h2 id="docs-title">Product &amp; UI guide</h2>
         <button type="button" class="icon-btn" id="modal-docs-close" aria-label="Close">×</button>
       </header>
       <div class="modal-body docs-body">
-        <h3>Why this tool</h3>
-        <p>Critical minerals plants improve when recovery, supply risk, and waste ideas are captured, voted, and owned—not lost in email. This pipeline makes stage gates explicit: <strong>analytics screening first</strong>, then <strong>core manufacturing workstreams</strong>.</p>
+        <h3>Who this is for</h3>
+        <p><strong>MineralOps Pipeline</strong> is a collaboration tool for <strong>mineral manufacturing project developers</strong> and <strong>plant operators</strong>. Capture improvement ideas, vote on what matters, assign ownership (team, location, lead), and track progress through analytics screening and core manufacturing phases.</p>
 
         <h3>Lifecycle phases</h3>
         <div class="docs-phases">
           <div>
-            <h4 class="family-analytics">Analytics & decision</h4>
+            <h4 class="family-analytics">Analytics &amp; decision</h4>
             <ol>
               <li><strong>Submitted</strong> — intake complete</li>
               <li><strong>Impact Screening</strong> — rough ROI / strategic fit</li>
-              <li><strong>Data Validation</strong> — baseline KPIs & data ready</li>
+              <li><strong>Data Validation</strong> — baseline KPIs &amp; data ready</li>
             </ol>
           </div>
           <div>
             <h4 class="family-mfg">Core technical manufacturing</h4>
             <ol start="4">
-              <li><strong>Technical Feasibility</strong> — process / metallurgy path</li>
+              <li><strong>Technical Feasibility</strong> — process / engineering path</li>
               <li><strong>Process Efficiency</strong> — recovery, throughput, control</li>
               <li><strong>Supply Chain Resolution</strong> — feedstock, logistics, vendors</li>
-              <li><strong>Waste & ESG Alignment</strong> — tailings, water, compliance</li>
+              <li><strong>Waste &amp; ESG Alignment</strong> — tailings, water, compliance</li>
               <li><strong>Pilot Execution</strong> — controlled trial</li>
               <li><strong>Scale-Up / Production</strong> — line or multi-site rollout</li>
             </ol>
@@ -288,12 +269,12 @@
         <h3>UI / UX map</h3>
         <ul class="docs-list">
           <li><strong>Header</strong> — product identity, Docs, Reset demo, primary <em>Add idea</em></li>
-          <li><strong>KPI strip</strong> — portfolio health: total, open, analytics vs manufacturing mix, votes</li>
-          <li><strong>Filters (dropdowns)</strong> — Phase, Category, Location, Team, Priority + free-text search</li>
+          <li><strong>KPI strip</strong> — total, open, analytics vs manufacturing mix, votes</li>
+          <li><strong>Filters (dropdowns)</strong> — Phase, Category, Location, Team, Priority + search</li>
           <li><strong>Board view</strong> — kanban by phase; cards show ownership and votes</li>
-          <li><strong>List view</strong> — dense table for reviews and sorting by votes</li>
-          <li><strong>Idea form</strong> — all required ownership fields before save</li>
-          <li><strong>Detail drawer</strong> — full narrative, edit, advance phase, delete</li>
+          <li><strong>List view</strong> — dense table for reviews, sorted by votes</li>
+          <li><strong>Idea form</strong> — required ownership fields before save</li>
+          <li><strong>Detail</strong> — full narrative, edit, advance phase, delete</li>
         </ul>
 
         <h3>Dropdown reference</h3>
@@ -302,10 +283,10 @@
             <tr><th>Control</th><th>Purpose</th></tr>
           </thead>
           <tbody>
-            <tr><td>Category</td><td>Process Efficiency, Supply Chain, Waste, Quality, Energy, Safety, Digital, Critical Minerals Recovery</td></tr>
+            <tr><td>Category</td><td>Process Efficiency, Supply Chain, Waste, Quality, Energy, Safety, Digital, Mineral Recovery</td></tr>
             <tr><td>Phase</td><td>10 stage gates (analytics → manufacturing → closed)</td></tr>
-            <tr><td>Location</td><td>Plant / site network for multi-site portfolio</td></tr>
-            <tr><td>Team</td><td>Functional owner (Process, Ops, SC, EHS, QA, Analytics, CI, R&D)</td></tr>
+            <tr><td>Location</td><td>Plant / project site for multi-site portfolio</td></tr>
+            <tr><td>Team</td><td>Functional owner (Process, Ops, Project Dev, SC, EHS, QA, Analytics, CI, R&amp;D)</td></tr>
             <tr><td>Priority</td><td>Low · Medium · High · Critical</td></tr>
           </tbody>
         </table>
@@ -316,7 +297,6 @@
   </div>
 
   <div class="toast hidden" id="toast" role="status"></div>
-
   <script src="app.js"></script>
 </body>
 </html>
