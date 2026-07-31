@@ -1,129 +1,99 @@
 # Business Requirements Document (BRD)
 
-## MineralOps Pipeline
+## MineralOps Pipeline — Manufacturing E2E
 
 | Field | Value |
 |-------|--------|
-| **Document** | BRD-MOP-001 |
+| **Document** | BRD-MOP-002 |
 | **Product** | MineralOps Pipeline |
-| **Audience** | Mineral manufacturing project developers & plant operators |
-| **Owner** | Product / Manufacturing Excellence |
-| **Status** | Approved for MVP |
+| **Audience** | Project developers & plant operators |
 | **Version** | 2.0 |
 | **Date** | 2026-07-31 |
 
 ---
 
-## 1. Executive Summary
+## 1. Executive summary
 
-Mineral manufacturing organizations (concentration, hydromet, smelting, refining, downstream processing) generate high-value improvement ideas from **project developers** and **plant operators**. Those ideas often die in email, chat, or site spreadsheets. There is no shared place to capture, prioritize, and advance work from analytics screening into core plant phases.
+Mineral manufacturing needs one place to run **end-to-end business and plant work**: production process tracks, quality, maintenance, supply chain, procurement, inventory, waste/ESG, safety, energy, metallurgy, capital projects, **finance & cost control**, **commodity hedging**, **marketing**, **CRM**, digital/MES analytics, and S&OP.
 
-**MineralOps Pipeline** is a lightweight tool to:
+**MineralOps Pipeline** is a static MVP (GitHub Pages) that models these as **business modules**. Each module has:
 
-- Add ideas  
-- Vote on them  
-- Track them through **analytics** and **core technical manufacturing** phases (process efficiency, supply chain, waste management, pilot, scale-up)  
-- Assign **team, location, and lead**
+1. An **ERP / CRM / process analog** (e.g. MES, P2P, QMS, Treasury, Order-to-Cash)  
+2. Its **own phase track** (stage gates differ by domain)  
+3. A catalog of **key KPIs** with targets and portfolio actuals  
 
-**Business outcome:** higher idea conversion, transparent prioritization, and faster time-to-value for developers and operators.
-
----
-
-## 2. Business Context
-
-### 2.1 Who uses it
-
-| Persona | Need |
-|---------|------|
-| **Project developer** | Stage gates, multi-site view, feasibility → pilot → scale |
-| **Plant operator** | Fast submit from the floor, clear status, named lead |
-| **Process / supply chain / EHS** | Category-specific manufacturing phases |
-| **CI / leadership** | Portfolio health by phase family and site |
-
-### 2.2 Problems today
-
-- Ideas scattered across tools  
-- No peer signal (votes)  
-- Analytics pilots and plant trials look the same on generic boards  
-- Unclear ownership (who leads? which site? which team?)
-
-### 2.3 Desired future state
-
-One portal: submit in minutes → vote → assign team/location/lead → move through explicit phases → review on board or list.
+Users capture **records** (ideas, process tracks, projects, commercial deals, finance/hedge actions), **vote**, assign **team / location / lead**, and advance **module-specific phases**.
 
 ---
 
-## 3. Business Objectives
+## 2. Why
 
-| ID | Objective | Success measure |
-|----|-----------|-----------------|
-| BO-1 | Capture more ideas from developers and operators | ≥ 2× ideas logged vs. baseline |
-| BO-2 | Prioritize with transparent votes | ≥ 60% of promoted ideas have votes |
-| BO-3 | Shorten idea-to-pilot cycle | Median Submit → Pilot ↓ 25% |
-| BO-4 | Balance analytics vs manufacturing work | Visible mix of phase families |
-| BO-5 | Clear accountability | Active ideas have Lead + Location + Team |
-
----
-
-## 4. Lifecycle phases
-
-### Analytics & decision
-
-| Phase | Purpose |
-|-------|---------|
-| Submitted | Intake complete |
-| Impact Screening | Rough ROI / strategic fit |
-| Data Validation | Baseline KPIs & data ready |
-
-### Core technical manufacturing
-
-| Phase | Purpose |
-|-------|---------|
-| Technical Feasibility | Process / engineering path |
-| **Process Efficiency** | Recovery, throughput, control |
-| **Supply Chain Resolution** | Feedstock, logistics, vendors |
-| **Waste & ESG Alignment** | Tailings, water, compliance |
-| Pilot Execution | Controlled trial |
-| Scale-Up / Production | Line or multi-site rollout |
-
-### Closed
-
-| Phase | Purpose |
-|-------|---------|
-| Realized / Closed | Value captured or retired |
-
-Not every idea visits every manufacturing phase; category guides the path.
+| Gap | Impact |
+|-----|--------|
+| Generic idea boards ignore ERP process stages | Ops cannot track production/QC/maintenance paths |
+| Finance, hedging, marketing missing | Commercial & risk work invisible to plant portfolio |
+| One phase list for all work | Analytics and plant workstreams collide |
+| No KPI catalog per domain | Not data-driven; hard to prioritize |
 
 ---
 
-## 5. Categories
+## 3. Business modules (scope)
 
-Process Efficiency · Supply Chain Problem · Waste Management · Quality & Yield · Energy & Utilities · Safety & Compliance · Digital & Analytics · Mineral Recovery  
-
----
-
-## 6. Business requirements
-
-| ID | Requirement | Priority |
-|----|-------------|----------|
-| BR-1 | Self-service idea submission | Must |
-| BR-2 | Peer voting | Must |
-| BR-3 | Defined lifecycle phases | Must |
-| BR-4 | Category, location, team, lead | Must |
-| BR-5 | Distinguish analytics vs manufacturing phases | Must |
-| BR-6 | Filters and search | Must |
-| BR-7 | Board view by phase | Should |
-| BR-8 | Static MVP (GitHub Pages) | Must |
-| BR-9 | Language for mineral manufacturing ops & project development | Must |
-
----
-
-## 7. Out of scope (MVP)
-
-ERP/MES integration, SSO, native mobile, multi-tenant SaaS billing, formal e-signature stage gates.
+| Module | ERP / system analog | Example phases | Example KPIs |
+|--------|---------------------|----------------|--------------|
+| Production & Process | MES / Production Order | Plan → Execute → Ship-Ready → Closed | OEE, Recovery, Throughput, Downtime, FPY |
+| Process Efficiency | CI / Process Eng | Baseline → Pilot → SOP → Realized | Δ Recovery, Reagent kg/t, Energy/t |
+| Supply Chain & Logistics | SCM | Demand → Source → Inbound → Deliver | OTIF, Lead time, Stockouts, Freight $/t |
+| Procurement | Procure-to-Pay | Req → RFQ → PO → GRN → 3-way match | Savings %, Maverick spend, PR→PO days |
+| Inventory & Warehouse | WMS | Receive → Putaway → Pick → Adjust | Accuracy %, Turns, WIP days |
+| Quality & Yield | QMS / LIMS | Sample → Assay → Disposition → CAPA | FPY, Defect ppm, CoA on-time |
+| Maintenance & Reliability | CMMS / EAM | Notify → Plan → Execute → Close | MTBF, MTTR, PM compliance |
+| Waste & ESG | EHS Environmental | Identify → Permit → Implement → Audit | Waste t, Water m³/t, CO₂e, Excursions |
+| Safety & Compliance | EHS Process Safety | Report → Investigate → Actions → Verify | TRIR, Training %, Open actions |
+| Energy & Utilities | Energy Mgmt | Meter → Project → M&V → Sustain | kWh/t, Peak MW, Energy $/t |
+| Mineral Recovery & Metallurgy | Met accounting | Lab → Pilot → Commission → Steady | Recovery %, Grade, By-product $ |
+| Project Development | Project / CapEx | FEL-1 → FEL-3 → Execute → Handover | CPI, SPI, CapEx variance |
+| **Finance & Cost Control** | FI / CO / Costing | Budget → Actual → Variance → Action | Cash cost $/t, Margin %, WC days |
+| **Hedging & Commodity Risk** | Treasury / Risk | Policy → Exposure → Execute → MtM → Settle | Hedge ratio, VaR, MtM P&L |
+| **Marketing & Commercial** | Pricing / Commercial | Insight → Campaign → Contract → Review | Realized price vs index, Pipeline $ |
+| **CRM & Customer Ops** | CRM / O2C | Lead → Opportunity → Order → Support | NPS, Customer OTIF, DSO |
+| Digital, MES & Analytics | MES / Historian / BI | Use case → Model → Adopt → Value | Data uptime, Model acc., Adoption |
+| Production Planning & S&OP | PP / S&OP | Demand → Supply → Commit → Dispatch | Plan accuracy, ATP, Utilization |
 
 ---
 
-## 8. Why this product exists
+## 4. Record types
 
-Mineral manufacturing improves when developers and operators share one pipeline: ideas are visible, voted, owned, and progressed through the right technical path—from analytics screening to process, supply chain, waste, pilot, and production.
+- Improvement Idea  
+- Process / Work Order Track  
+- CapEx / Project  
+- Commercial / CRM Deal  
+- Finance / Hedge Action  
+
+---
+
+## 5. Business requirements
+
+| ID | Requirement |
+|----|-------------|
+| BR-1 | Module taxonomy covering plant + commercial + finance/risk |
+| BR-2 | **Different phase tracks per module** |
+| BR-3 | **Key KPIs per module** with target and actual on records |
+| BR-4 | Portfolio board/list with filters (module, phase, type, location, team, priority) |
+| BR-5 | Module explorer, KPI hub, process map views |
+| BR-6 | Vote, lead, team, location ownership |
+| BR-7 | Static deploy on GitHub Pages (MVP) |
+
+---
+
+## 6. Out of scope (MVP)
+
+Live ERP integration, SSO, multi-user server sync, formal e-signature, native mobile.
+
+---
+
+## 7. Success
+
+- Stakeholders see finance, hedging, marketing, CRM alongside plant modules  
+- Operators use module-correct phases  
+- KPI hub shows on/off track vs targets from seeded and user data  

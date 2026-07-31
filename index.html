@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="MineralOps Pipeline — idea capture, voting, and phase tracking for mineral manufacturing project developers and plant operators." />
-  <title>MineralOps Pipeline</title>
+  <meta name="description" content="MineralOps Pipeline — end-to-end manufacturing ERP/CRM/process tracking for project developers and plant operators. Modules, phases, and KPIs." />
+  <title>MineralOps Pipeline — Manufacturing E2E</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
@@ -22,197 +22,215 @@
             <circle cx="16" cy="22" r="2" fill="#C4783A"/>
             <defs>
               <linearGradient id="g" x1="0" y1="0" x2="32" y2="32">
-                <stop stop-color="#1A3A4A"/>
-                <stop offset="1" stop-color="#0D2430"/>
+                <stop stop-color="#1A3A4A"/><stop offset="1" stop-color="#0D2430"/>
               </linearGradient>
             </defs>
           </svg>
         </div>
         <div>
           <h1 class="product-name">MineralOps Pipeline</h1>
-          <p class="product-tagline">For project developers &amp; plant operators — ideas → votes → phases → impact</p>
+          <p class="product-tagline">Manufacturing E2E · ERP / CRM / process tracks · modules · phases · KPIs</p>
         </div>
       </div>
       <div class="header-actions">
-        <button type="button" class="btn btn-ghost" id="btn-docs" title="Product docs">Docs</button>
-        <button type="button" class="btn btn-ghost" id="btn-reset" title="Restore demo seed data">Reset demo</button>
-        <button type="button" class="btn btn-primary" id="btn-add">
-          <span class="btn-icon">+</span> Add idea
-        </button>
+        <button type="button" class="btn btn-ghost" id="btn-docs">Docs</button>
+        <button type="button" class="btn btn-ghost" id="btn-reset">Reset demo</button>
+        <button type="button" class="btn btn-primary" id="btn-add"><span class="btn-icon">+</span> Add record</button>
       </div>
     </header>
 
-    <section class="kpi-strip" aria-label="Portfolio metrics">
-      <article class="kpi-card">
-        <span class="kpi-label">Total ideas</span>
-        <span class="kpi-value" id="kpi-total">0</span>
-      </article>
-      <article class="kpi-card">
-        <span class="kpi-label">Open pipeline</span>
-        <span class="kpi-value" id="kpi-open">0</span>
-      </article>
-      <article class="kpi-card kpi-analytics">
-        <span class="kpi-label">Analytics phases</span>
-        <span class="kpi-value" id="kpi-analytics">0</span>
-        <span class="kpi-hint">Screening · Data</span>
-      </article>
-      <article class="kpi-card kpi-mfg">
-        <span class="kpi-label">Manufacturing phases</span>
-        <span class="kpi-value" id="kpi-mfg">0</span>
-        <span class="kpi-hint">Process · Supply · Waste · Pilot</span>
-      </article>
-      <article class="kpi-card">
-        <span class="kpi-label">Total votes</span>
-        <span class="kpi-value" id="kpi-votes">0</span>
-      </article>
+    <!-- Primary nav: views -->
+    <nav class="main-nav" aria-label="Main views">
+      <button type="button" class="nav-tab active" data-view="portfolio">Portfolio</button>
+      <button type="button" class="nav-tab" data-view="modules">Business modules</button>
+      <button type="button" class="nav-tab" data-view="kpi">KPI hub</button>
+      <button type="button" class="nav-tab" data-view="process">Process map</button>
+    </nav>
+
+    <!-- KPI strip (portfolio context) -->
+    <section class="kpi-strip" id="global-kpis" aria-label="Portfolio metrics">
+      <article class="kpi-card"><span class="kpi-label">Records</span><span class="kpi-value" id="kpi-total">0</span></article>
+      <article class="kpi-card"><span class="kpi-label">Open</span><span class="kpi-value" id="kpi-open">0</span></article>
+      <article class="kpi-card kpi-analytics"><span class="kpi-label">Modules active</span><span class="kpi-value" id="kpi-modules">0</span><span class="kpi-hint">ERP · CRM · Process</span></article>
+      <article class="kpi-card kpi-mfg"><span class="kpi-label">Process tracks</span><span class="kpi-value" id="kpi-process">0</span><span class="kpi-hint">WO / production</span></article>
+      <article class="kpi-card"><span class="kpi-label">Votes</span><span class="kpi-value" id="kpi-votes">0</span></article>
     </section>
 
-    <section class="filters" aria-label="Filters">
-      <div class="filter-search">
-        <label class="sr-only" for="filter-search">Search</label>
-        <input type="search" id="filter-search" placeholder="Search title, problem, lead…" autocomplete="off" />
+    <!-- PORTFOLIO VIEW -->
+    <section id="view-portfolio" class="view-panel">
+      <div class="filters" aria-label="Filters">
+        <div class="filter-search">
+          <label class="sr-only" for="filter-search">Search</label>
+          <input type="search" id="filter-search" placeholder="Search title, problem, lead…" autocomplete="off" />
+        </div>
+        <div class="filter-selects">
+          <div class="field-inline">
+            <label for="filter-module">Module</label>
+            <select id="filter-module"><option value="">All modules</option></select>
+          </div>
+          <div class="field-inline">
+            <label for="filter-phase">Phase</label>
+            <select id="filter-phase"><option value="">All phases</option></select>
+          </div>
+          <div class="field-inline">
+            <label for="filter-type">Record type</label>
+            <select id="filter-type"><option value="">All types</option></select>
+          </div>
+          <div class="field-inline">
+            <label for="filter-location">Location</label>
+            <select id="filter-location"><option value="">All locations</option></select>
+          </div>
+          <div class="field-inline">
+            <label for="filter-team">Team</label>
+            <select id="filter-team"><option value="">All teams</option></select>
+          </div>
+          <div class="field-inline">
+            <label for="filter-priority">Priority</label>
+            <select id="filter-priority"><option value="">All priorities</option></select>
+          </div>
+        </div>
+        <div class="view-toggle" role="group" aria-label="Layout">
+          <button type="button" class="toggle-btn active" id="layout-board">Board</button>
+          <button type="button" class="toggle-btn" id="layout-list">List</button>
+        </div>
+        <button type="button" class="btn btn-ghost btn-sm" id="btn-clear-filters">Clear</button>
       </div>
-      <div class="filter-selects">
-        <div class="field-inline">
-          <label for="filter-phase">Phase</label>
-          <select id="filter-phase"><option value="">All phases</option></select>
-        </div>
-        <div class="field-inline">
-          <label for="filter-category">Category</label>
-          <select id="filter-category"><option value="">All categories</option></select>
-        </div>
-        <div class="field-inline">
-          <label for="filter-location">Location</label>
-          <select id="filter-location"><option value="">All locations</option></select>
-        </div>
-        <div class="field-inline">
-          <label for="filter-team">Team</label>
-          <select id="filter-team"><option value="">All teams</option></select>
-        </div>
-        <div class="field-inline">
-          <label for="filter-priority">Priority</label>
-          <select id="filter-priority"><option value="">All priorities</option></select>
-        </div>
-      </div>
-      <div class="view-toggle" role="group" aria-label="View mode">
-        <button type="button" class="toggle-btn active" data-view="board" id="view-board">Board</button>
-        <button type="button" class="toggle-btn" data-view="list" id="view-list">List</button>
-      </div>
-      <button type="button" class="btn btn-ghost btn-sm" id="btn-clear-filters">Clear filters</button>
-    </section>
-
-    <section class="legend" aria-label="Phase families">
-      <span class="legend-item"><span class="dot dot-analytics"></span> Analytics &amp; decision</span>
-      <span class="legend-item"><span class="dot dot-mfg"></span> Core technical manufacturing</span>
-      <span class="legend-item"><span class="dot dot-closed"></span> Realized / closed</span>
-    </section>
-
-    <main id="main-content">
+      <p class="phase-hint" id="phase-track-hint">Select a module filter to board by that module’s phase track. Default: Production &amp; Process phases.</p>
       <div id="board-view" class="board-view"></div>
       <div id="list-view" class="list-view hidden"></div>
       <div id="empty-state" class="empty-state hidden">
         <div class="empty-icon">◎</div>
-        <h2>No ideas match</h2>
-        <p>Clear filters or add a new idea for your mineral manufacturing project or plant.</p>
-        <button type="button" class="btn btn-primary" id="btn-add-empty">Add idea</button>
+        <h2>No records match</h2>
+        <p>Clear filters or add a manufacturing record across ERP, CRM, or process modules.</p>
+        <button type="button" class="btn btn-primary" id="btn-add-empty">Add record</button>
       </div>
-    </main>
+    </section>
+
+    <!-- MODULES VIEW -->
+    <section id="view-modules" class="view-panel hidden">
+      <div class="section-intro">
+        <h2>Business modules (ERP · CRM · process)</h2>
+        <p>Each module has its <strong>own phase track</strong> and <strong>key KPIs</strong> — manufacturing end-to-end from plant floor to finance, hedging, marketing, and customer ops.</p>
+      </div>
+      <div id="modules-grid" class="modules-grid"></div>
+    </section>
+
+    <!-- KPI HUB -->
+    <section id="view-kpi" class="view-panel hidden">
+      <div class="section-intro">
+        <h2>KPI hub by module</h2>
+        <p>Targets vs portfolio averages from open records. Data-driven view for operators and project developers.</p>
+      </div>
+      <div class="field-inline kpi-module-pick">
+        <label for="kpi-module-select">Focus module</label>
+        <select id="kpi-module-select"></select>
+      </div>
+      <div id="kpi-hub" class="kpi-hub"></div>
+    </section>
+
+    <!-- PROCESS MAP -->
+    <section id="view-process" class="view-panel hidden">
+      <div class="section-intro">
+        <h2>Process map — phase tracks</h2>
+        <p>How work moves in each domain. Click a module to see stages; open records sit on the track.</p>
+      </div>
+      <div class="field-inline">
+        <label for="process-module-select">Module process track</label>
+        <select id="process-module-select"></select>
+      </div>
+      <div id="process-map" class="process-map"></div>
+      <div id="process-records" class="process-records"></div>
+    </section>
 
     <footer class="footer">
       <p>
-        <strong>MineralOps Pipeline</strong> · For project developers &amp; operators ·
+        <strong>MineralOps Pipeline</strong> · Static MVP on GitHub Pages ·
         <a href="docs/BRD.md" target="_blank" rel="noopener">BRD</a> ·
         <a href="docs/PRD.md" target="_blank" rel="noopener">PRD</a> ·
-        <a href="https://github.com/Aramina6" target="_blank" rel="noopener">Aramina6</a>
+        <a href="https://github.com/Aramina6/mineralops-pipeline" target="_blank" rel="noopener">Repo</a>
       </p>
-      <p class="footer-note">Phases: Submitted → Impact Screening → Data Validation → Technical Feasibility → Process Efficiency · Supply Chain · Waste &amp; ESG → Pilot → Scale-Up → Realized</p>
+      <p class="footer-note">Modules: Production · Process Eff. · Supply Chain · Procurement · Inventory · Quality · Maintenance · Waste/ESG · Safety · Energy · Metallurgy · Projects · Finance · Hedging · Marketing · CRM · Digital · S&amp;OP</p>
     </footer>
   </div>
 
-  <!-- Modal: Add / Edit -->
+  <!-- Form modal -->
   <div class="modal-backdrop hidden" id="modal-form" role="dialog" aria-modal="true" aria-labelledby="modal-form-title">
     <div class="modal modal-wide">
       <header class="modal-header">
-        <h2 id="modal-form-title">Add idea</h2>
+        <h2 id="modal-form-title">Add record</h2>
         <button type="button" class="icon-btn" id="modal-form-close" aria-label="Close">×</button>
       </header>
       <form id="idea-form" class="modal-body form-grid" novalidate>
-        <input type="hidden" id="field-id" />
-
+        <div class="field">
+          <label for="field-module">Business module <span class="req">*</span></label>
+          <select id="field-module" required></select>
+          <p class="field-hint" id="module-erp-hint">ERP analog</p>
+        </div>
+        <div class="field">
+          <label for="field-type">Record type <span class="req">*</span></label>
+          <select id="field-type" required></select>
+        </div>
         <div class="field full">
           <label for="field-title">Title <span class="req">*</span></label>
-          <input type="text" id="field-title" required maxlength="120" placeholder="e.g. Improve flotation recovery with staged reagent dosing" />
+          <input type="text" id="field-title" required maxlength="140" placeholder="e.g. Q3 cash cost program — Site B" />
           <span class="field-error" data-for="field-title"></span>
         </div>
-
         <div class="field full">
-          <label for="field-problem">Problem statement <span class="req">*</span></label>
-          <textarea id="field-problem" required rows="3" maxlength="600" placeholder="What is failing, costly, or risky for developers or operators today?"></textarea>
+          <label for="field-problem">Problem / context <span class="req">*</span></label>
+          <textarea id="field-problem" required rows="3" maxlength="700"></textarea>
           <span class="field-error" data-for="field-problem"></span>
         </div>
-
         <div class="field full">
-          <label for="field-solution">Proposed solution <span class="req">*</span></label>
-          <textarea id="field-solution" required rows="3" maxlength="600" placeholder="What change do you propose?"></textarea>
+          <label for="field-solution">Proposed action / solution <span class="req">*</span></label>
+          <textarea id="field-solution" required rows="3" maxlength="700"></textarea>
           <span class="field-error" data-for="field-solution"></span>
         </div>
-
         <div class="field full">
-          <label for="field-impact">Expected impact</label>
-          <textarea id="field-impact" rows="2" maxlength="400" placeholder="e.g. +1.5% recovery, lower reagent cost, less downtime"></textarea>
+          <label for="field-impact">Expected business impact</label>
+          <textarea id="field-impact" rows="2" maxlength="400"></textarea>
         </div>
-
         <div class="field">
-          <label for="field-category">Category <span class="req">*</span></label>
-          <select id="field-category" required></select>
-          <span class="field-error" data-for="field-category"></span>
-        </div>
-
-        <div class="field">
-          <label for="field-phase">Phase <span class="req">*</span></label>
+          <label for="field-phase">Phase (module track) <span class="req">*</span></label>
           <select id="field-phase" required></select>
-          <p class="field-hint" id="phase-family-hint">Analytics &amp; decision</p>
         </div>
-
         <div class="field">
           <label for="field-priority">Priority <span class="req">*</span></label>
           <select id="field-priority" required></select>
         </div>
-
         <div class="field">
-          <label for="field-location">Location / plant <span class="req">*</span></label>
+          <label for="field-location">Location <span class="req">*</span></label>
           <select id="field-location" required></select>
         </div>
-
         <div class="field">
           <label for="field-team">Team <span class="req">*</span></label>
           <select id="field-team" required></select>
         </div>
-
         <div class="field">
           <label for="field-lead">Lead <span class="req">*</span></label>
-          <input type="text" id="field-lead" required maxlength="80" placeholder="Named owner (developer or operator lead)" />
+          <input type="text" id="field-lead" required maxlength="80" />
           <span class="field-error" data-for="field-lead"></span>
         </div>
-
         <div class="field">
           <label for="field-submitter">Submitter</label>
-          <input type="text" id="field-submitter" maxlength="80" placeholder="Your name / role" />
+          <input type="text" id="field-submitter" maxlength="80" />
         </div>
-
+        <div class="field full" id="kpi-inputs-wrap">
+          <label>Key KPIs (actuals for this record)</label>
+          <div id="kpi-inputs" class="kpi-inputs"></div>
+        </div>
         <div class="form-actions full">
           <button type="button" class="btn btn-ghost" id="btn-cancel-form">Cancel</button>
-          <button type="submit" class="btn btn-primary" id="btn-save-form">Save idea</button>
+          <button type="submit" class="btn btn-primary">Save</button>
         </div>
       </form>
     </div>
   </div>
 
-  <!-- Modal: Detail -->
-  <div class="modal-backdrop hidden" id="modal-detail" role="dialog" aria-modal="true" aria-labelledby="detail-title">
+  <!-- Detail modal -->
+  <div class="modal-backdrop hidden" id="modal-detail" role="dialog" aria-modal="true">
     <div class="modal modal-wide">
       <header class="modal-header">
-        <h2 id="detail-title">Idea detail</h2>
+        <h2 id="detail-title">Detail</h2>
         <button type="button" class="icon-btn" id="modal-detail-close" aria-label="Close">×</button>
       </header>
       <div class="modal-body" id="detail-body"></div>
@@ -226,77 +244,30 @@
     </div>
   </div>
 
-  <!-- Modal: Docs -->
-  <div class="modal-backdrop hidden" id="modal-docs" role="dialog" aria-modal="true" aria-labelledby="docs-title">
+  <!-- Docs modal -->
+  <div class="modal-backdrop hidden" id="modal-docs" role="dialog" aria-modal="true">
     <div class="modal modal-wide">
       <header class="modal-header">
-        <h2 id="docs-title">Product &amp; UI guide</h2>
+        <h2>MineralOps — product guide</h2>
         <button type="button" class="icon-btn" id="modal-docs-close" aria-label="Close">×</button>
       </header>
-      <div class="modal-body docs-body">
-        <h3>Who this is for</h3>
-        <p><strong>MineralOps Pipeline</strong> is a collaboration tool for <strong>mineral manufacturing project developers</strong> and <strong>plant operators</strong>. Capture improvement ideas, vote on what matters, assign ownership (team, location, lead), and track progress through analytics screening and core manufacturing phases.</p>
+      <div class="modal-body docs-body" id="docs-body"></div>
+    </div>
+  </div>
 
-        <h3>Lifecycle phases</h3>
-        <div class="docs-phases">
-          <div>
-            <h4 class="family-analytics">Analytics &amp; decision</h4>
-            <ol>
-              <li><strong>Submitted</strong> — intake complete</li>
-              <li><strong>Impact Screening</strong> — rough ROI / strategic fit</li>
-              <li><strong>Data Validation</strong> — baseline KPIs &amp; data ready</li>
-            </ol>
-          </div>
-          <div>
-            <h4 class="family-mfg">Core technical manufacturing</h4>
-            <ol start="4">
-              <li><strong>Technical Feasibility</strong> — process / engineering path</li>
-              <li><strong>Process Efficiency</strong> — recovery, throughput, control</li>
-              <li><strong>Supply Chain Resolution</strong> — feedstock, logistics, vendors</li>
-              <li><strong>Waste &amp; ESG Alignment</strong> — tailings, water, compliance</li>
-              <li><strong>Pilot Execution</strong> — controlled trial</li>
-              <li><strong>Scale-Up / Production</strong> — line or multi-site rollout</li>
-            </ol>
-          </div>
-          <div>
-            <h4 class="family-closed">Closed</h4>
-            <ol start="10">
-              <li><strong>Realized / Closed</strong> — value captured or retired</li>
-            </ol>
-          </div>
-        </div>
-
-        <h3>UI / UX map</h3>
-        <ul class="docs-list">
-          <li><strong>Header</strong> — product identity, Docs, Reset demo, primary <em>Add idea</em></li>
-          <li><strong>KPI strip</strong> — total, open, analytics vs manufacturing mix, votes</li>
-          <li><strong>Filters (dropdowns)</strong> — Phase, Category, Location, Team, Priority + search</li>
-          <li><strong>Board view</strong> — kanban by phase; cards show ownership and votes</li>
-          <li><strong>List view</strong> — dense table for reviews, sorted by votes</li>
-          <li><strong>Idea form</strong> — required ownership fields before save</li>
-          <li><strong>Detail</strong> — full narrative, edit, advance phase, delete</li>
-        </ul>
-
-        <h3>Dropdown reference</h3>
-        <table class="docs-table">
-          <thead>
-            <tr><th>Control</th><th>Purpose</th></tr>
-          </thead>
-          <tbody>
-            <tr><td>Category</td><td>Process Efficiency, Supply Chain, Waste, Quality, Energy, Safety, Digital, Mineral Recovery</td></tr>
-            <tr><td>Phase</td><td>10 stage gates (analytics → manufacturing → closed)</td></tr>
-            <tr><td>Location</td><td>Plant / project site for multi-site portfolio</td></tr>
-            <tr><td>Team</td><td>Functional owner (Process, Ops, Project Dev, SC, EHS, QA, Analytics, CI, R&amp;D)</td></tr>
-            <tr><td>Priority</td><td>Low · Medium · High · Critical</td></tr>
-          </tbody>
-        </table>
-
-        <p class="docs-links">Full documents: <a href="docs/BRD.md" target="_blank" rel="noopener">BRD</a> · <a href="docs/PRD.md" target="_blank" rel="noopener">PRD</a></p>
-      </div>
+  <!-- Module detail modal -->
+  <div class="modal-backdrop hidden" id="modal-module" role="dialog" aria-modal="true">
+    <div class="modal modal-wide">
+      <header class="modal-header">
+        <h2 id="module-detail-title">Module</h2>
+        <button type="button" class="icon-btn" id="modal-module-close" aria-label="Close">×</button>
+      </header>
+      <div class="modal-body" id="module-detail-body"></div>
     </div>
   </div>
 
   <div class="toast hidden" id="toast" role="status"></div>
+  <script src="data.js"></script>
   <script src="app.js"></script>
 </body>
 </html>

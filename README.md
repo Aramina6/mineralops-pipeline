@@ -1,48 +1,63 @@
 # MineralOps Pipeline
 
-**Software tool for mineral manufacturing project developers and plant operators.**
+**Manufacturing end-to-end tool for project developers and plant operators.**
 
-Capture ideas → vote → track through analytics and manufacturing phases (process efficiency, supply chain, waste & ESG) → own with **team, location, lead**.
+Static MVP on **GitHub Pages**: capture records, vote, track **module-specific phases**, and manage **key KPIs** across plant, commercial, and finance domains.
 
 | | |
 |--|--|
-| **Live (GitHub Pages)** | https://aramina6.github.io/mineralops-pipeline/ |
+| **Live** | https://aramina6.github.io/mineralops-pipeline/ |
 | **Repo** | https://github.com/Aramina6/mineralops-pipeline |
 | **BRD** | [docs/BRD.md](docs/BRD.md) |
 | **PRD** | [docs/PRD.md](docs/PRD.md) |
 
 ---
 
-## Who it’s for
+## What’s in the MVP
 
-| Role | What they do here |
-|------|-------------------|
-| **Project developer** | Stage-gate ideas, multi-site portfolio, feasibility → pilot → scale |
-| **Plant operator** | Fast submit, vote, see status and named lead |
-| **Process / SC / EHS / CI** | Category workstreams and weekly board reviews |
+### Business modules (ERP / CRM / process analogs)
+
+| Module | System analog | Sample KPIs |
+|--------|---------------|-------------|
+| Production & Process | MES | OEE, Recovery, Throughput |
+| Process Efficiency | CI | Δ Recovery, Reagent kg/t |
+| Supply Chain | SCM | OTIF, Lead time, Freight $/t |
+| Procurement | P2P | Savings %, Maverick spend |
+| Inventory | WMS | Accuracy %, Turns |
+| Quality | QMS / LIMS | FPY, CoA on-time |
+| Maintenance | CMMS | MTBF, MTTR, PM % |
+| Waste & ESG | EHS | Waste t, Water m³/t, CO₂e |
+| Safety | EHS | TRIR, Training % |
+| Energy | Utilities | kWh/t, Peak MW |
+| Metallurgy | Met accounting | Recovery, By-product $ |
+| Project Development | CapEx / FEL | CPI, SPI |
+| **Finance** | FI/CO | Cash cost $/t, Margin % |
+| **Hedging** | Treasury | Hedge ratio, VaR |
+| **Marketing** | Commercial | Price vs index, Pipeline $ |
+| **CRM** | Order-to-Cash | NPS, DSO, Customer OTIF |
+| Digital / Analytics | MES / BI | Model accuracy, Adoption |
+| S&OP / Planning | PP | Plan accuracy, ATP |
+
+Each module has its **own phase track** (e.g. Production: Plan→Execute→Ship-Ready; CRM: Lead→Opportunity→Order; Hedging: Policy→Execute→MtM→Settle).
+
+### Views
+
+1. **Portfolio** — board/list, filters, votes  
+2. **Business modules** — catalog of domains + phases + KPIs  
+3. **KPI hub** — actual vs target from portfolio data  
+4. **Process map** — phase flow + records on the track  
+
+### Record types
+
+Improvement Idea · Process / WO Track · CapEx Project · Commercial / CRM Deal · Finance / Hedge Action  
 
 ---
 
-## Phases
+## Stack
 
-| Family | Phases |
-|--------|--------|
-| **Analytics** | Submitted → Impact Screening → Data Validation |
-| **Manufacturing** | Technical Feasibility → Process Efficiency → Supply Chain → Waste & ESG → Pilot → Scale-Up |
-| **Closed** | Realized / Closed |
+**HTML · CSS · vanilla JS · GitHub Pages · no build step**
 
----
-
-## Features
-
-- Add / edit ideas  
-- Vote toggle  
-- Board + list views  
-- Dropdown filters: phase, category, location, team, priority  
-- KPI strip (analytics vs manufacturing)  
-- Seed demo + reset  
-- In-app Docs / UI guide  
-- Static site (no backend); data in browser `localStorage`
+Data in browser `localStorage` (`mineralops-pipeline-v2`).
 
 ---
 
@@ -54,11 +69,22 @@ Open `index.html`, or:
 python -m http.server 8080
 ```
 
+Visit `http://localhost:8080`.
+
 ---
 
-## Stack
+## Repo layout
 
-HTML · CSS · vanilla JS · GitHub Pages · no build step  
+```
+mineralops-pipeline/
+├── index.html
+├── styles.css
+├── data.js      # modules, phases, KPIs, seed
+├── app.js       # UI
+├── docs/BRD.md
+├── docs/PRD.md
+└── README.md
+```
 
 ---
 
